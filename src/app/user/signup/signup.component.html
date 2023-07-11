@@ -1,0 +1,45 @@
+<div class="container">
+  <form (submit)="signup()" class="form mt-5">
+    <div class="text-center">
+      <h2>Sign up</h2>
+    </div>
+    <div class="mb-3">
+      <label for="" class="mb-2">Name</label>
+      <input type="name" name="name" [(ngModel)]="name" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="" class="mb-2">Email</label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        class="form-control"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="" class="mb-2">Password</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        class="form-control"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="" class="mb-2">Confirm Password</label>
+      <input
+        type="password"
+        name="confirm-password"
+        [(ngModel)]="confirmPassword"
+        class="form-control"
+      />
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Sign Up</button>
+    </div>
+  </form>
+  <div class="mt-2 text-sm">
+    Already have an account?
+    <a [routerLink]="['/signup']">sign in</a>
+  </div>
+</div>
