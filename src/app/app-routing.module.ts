@@ -5,18 +5,11 @@ import { NoteItemComponent } from './notes/note-item/note-item.component';
 import { AddNoteComponent } from './notes/add-note/add-note.component';
 import { SigninComponent } from './user/signin/signin.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 const routes: Routes = [
   {
     path: 'notes',
     component: NoteListComponent,
-  },
-  {
-    path: 'notes/add',
-    component: AddNoteComponent,
-  },
-  {
-    path: 'notes/:id(\\d+)',
-    component: NoteItemComponent,
   },
   {
     path: 'signin',
@@ -30,6 +23,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'signin',
     pathMatch: 'full',
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];
 

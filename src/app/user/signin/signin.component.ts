@@ -1,6 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
@@ -17,9 +22,9 @@ export class SigninComponent {
     private router: Router
   ) {}
 
-  loginForm = this.fb.group({
-    email: [''],
-    password: [''],
+  signinForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(3)]],
   });
 
   isError: boolean = false;
@@ -35,8 +40,8 @@ export class SigninComponent {
   signin() {
     this.userService
       .signin({
-        email: this.loginForm.get('email')?.value,
-        password: this.loginForm.get('password')?.value,
+        email: this.signinForm.get('email')?.value,
+        password: this.signinForm.get('password')?.value,
       })
       .pipe(catchError(this.errorHandler))
       .subscribe((res: any) => {

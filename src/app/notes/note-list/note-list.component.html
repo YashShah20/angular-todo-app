@@ -1,1 +1,18 @@
-<p>note-list works!</p>
+<div class="container mt-5">
+  <div class="">
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
+  </div>
+  <app-add-note (noteAdded)="addNote($event)"></app-add-note>
+  <div class="my-2">
+    <h2>Your Notes</h2>
+  </div>
+  <ol>
+    <li class="mb-2" *ngFor="let note of noteList">
+      <app-note-item
+        [note]="note"
+        (noteUpdated)="updateNote($event)"
+        (noteDeleted)="deleteNote($event)"
+      ></app-note-item>
+    </li>
+  </ol>
+</div>

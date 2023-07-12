@@ -1,1 +1,18 @@
-<p>note-item works!</p>
+<div>
+  <dt>ID:</dt>
+  <dd>{{ note.id }}</dd>
+  <div *ngIf="!isUpdateRequestd">
+    <dt>Title:</dt>
+    <dd>{{ note.title }}</dd>
+    <button class="btn btn-sm btn-info" (click)="isUpdateRequestd = true">
+      update
+    </button>
+  </div>
+  <div *ngIf="isUpdateRequestd">
+    <dt>New Title:</dt>
+    <input type="text" class="form-control" [formControl]="updatedTitle" />
+    <button class="btn btn-sm btn-info" (click)="updateNote()">update</button>
+  </div>
+  <!-- {{ note | json }} -->
+  <button (click)="deleteNote()" class="btn btn-sm btn-danger">delete</button>
+</div>
