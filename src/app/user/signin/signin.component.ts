@@ -1,4 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -7,16 +11,38 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent {
-  email!: string;
-  password!: string;
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+
+  loginForm = this.fb.group({
+    email: [''],
+    password: [''],
+  });
+
+  isError: boolean = false;
+
+  private errorHandler = (error: HttpErrorResponse) => {
+    this.isError = true;
+
+    return throwError(
+      () => new Error('Something bad happened; please try again later.')
+    );
+  };
 
   signin() {
-    console.log('here');
     this.userService
-      .signin({ email: this.email, password: this.password })
-      .subscribe((res) => {
-        console.log(res);
+      .signin({
+        email: this.loginForm.get('email')?.value,
+        password: this.loginForm.get('password')?.value,
+      })
+      .pipe(catchError(this.errorHandler))
+      .subscribe((res: any) => {
+        console.log(res.status);
+        localStorage.setItem('token', res?.token);
+        this.router.navigate(['/notes']);
       });
   }
 }

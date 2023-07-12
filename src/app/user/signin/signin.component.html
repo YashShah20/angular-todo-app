@@ -1,25 +1,18 @@
 <div class="container">
-  <form (submit)="signin()" class="form mt-5">
+  <form (submit)="signin()" [formGroup]="loginForm" class="form mt-5">
     <div class="text-center">
       <h2>Sign in</h2>
     </div>
+    <div *ngIf="isError" class="my-2 p-2 border rounded-2 bg-warning text-dark">
+      Invalid Credentials
+    </div>
     <div class="mb-3">
       <label for="" class="mb-2">Email</label>
-      <input
-        type="email"
-        name="email"
-        [(ngModel)]="email"
-        class="form-control"
-      />
+      <input type="email" formControlName="email" class="form-control" />
     </div>
     <div class="mb-3">
       <label for="" class="mb-2">Password</label>
-      <input
-        type="password"
-        name="password"
-        [(ngModel)]="password"
-        class="form-control"
-      />
+      <input type="password" formControlName="password" class="form-control" />
     </div>
     <div class="mb-3">
       <button type="submit" class="btn btn-primary">Sign in</button>

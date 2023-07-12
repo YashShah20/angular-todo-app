@@ -1,18 +1,26 @@
 <div class="container">
-  <form (submit)="signup()" class="form mt-5">
+  <form (submit)="signup()" [formGroup]="userForm" class="form mt-5">
     <div class="text-center">
       <h2>Sign up</h2>
     </div>
+    <div *ngIf="isError" class="my-2 p-2 border rounded-2 bg-warning text-dark">
+      {{ errorMessage }}
+    </div>
     <div class="mb-3">
       <label for="" class="mb-2">Name</label>
-      <input type="name" name="name" [(ngModel)]="name" class="form-control" />
+      <input
+        type="name"
+        name="name"
+        formControlName="name"
+        class="form-control"
+      />
     </div>
     <div class="mb-3">
       <label for="" class="mb-2">Email</label>
       <input
         type="email"
         name="email"
-        [(ngModel)]="email"
+        formControlName="email"
         class="form-control"
       />
     </div>
@@ -21,7 +29,7 @@
       <input
         type="password"
         name="password"
-        [(ngModel)]="password"
+        formControlName="password"
         class="form-control"
       />
     </div>
@@ -30,7 +38,7 @@
       <input
         type="password"
         name="confirm-password"
-        [(ngModel)]="confirmPassword"
+        formControlName="confirmPassword"
         class="form-control"
       />
     </div>
@@ -40,6 +48,6 @@
   </form>
   <div class="mt-2 text-sm">
     Already have an account?
-    <a [routerLink]="['/signup']">sign in</a>
+    <a [routerLink]="['/signin']">sign in</a>
   </div>
 </div>
