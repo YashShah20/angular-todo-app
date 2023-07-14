@@ -18,7 +18,7 @@ const todoRouter = require("./routes/todo");
 app.use("/user", userRouter);
 app.use("/todo", todoRouter);
 
-const port = process.env.PORT | 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`server is listening to the port ${port}`);
