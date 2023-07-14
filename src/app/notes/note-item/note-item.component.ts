@@ -15,7 +15,7 @@ export class NoteItemComponent {
   @Output() noteUpdated = new EventEmitter();
 
   updatedTitle = new FormControl('');
-  isUpdateRequestd: boolean = false;
+  isUpdateRequested: boolean = false;
 
   isError: boolean = false;
   constructor(private noteService: NoteServiceService) {}
@@ -34,7 +34,7 @@ export class NoteItemComponent {
       })
       .subscribe((res) => {
         this.noteUpdated.emit(res);
-        this.isUpdateRequestd = false;
+        this.isUpdateRequested = false;
       });
   }
 

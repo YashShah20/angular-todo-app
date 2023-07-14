@@ -9,46 +9,25 @@ export class NoteServiceService {
   constructor(private http: HttpClient) {}
 
   getNotes(): Observable<Object[]> {
-    return this.http.get<Object[]>('http://localhost:3000/todo', {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    });
+    return this.http.get<Object[]>('http://localhost:3000/todo');
   }
 
   getNoteById(id: number): Observable<Object> {
-    return this.http.get<Object>(`http://localhost:3000/todo/${id}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    });
+    return this.http.get<Object>(`http://localhost:3000/todo/${id}`);
   }
 
   addNote(note: Object): Observable<Object> {
-    return this.http.post<Object>('http://localhost:3000/todo/add', note, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    });
+    return this.http.post<Object>('http://localhost:3000/todo/add', note);
   }
 
   updateNote(id: number, note: Object): Observable<Object> {
     return this.http.put<Object>(
       `http://localhost:3000/todo/${id}/update`,
-      note,
-      {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      }
+      note
     );
   }
 
   deleteNote(id: number): Observable<Object> {
-    return this.http.delete<Object>(`http://localhost:3000/todo/${id}/delete`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    });
+    return this.http.delete<Object>(`http://localhost:3000/todo/${id}/delete`);
   }
 }

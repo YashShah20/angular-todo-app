@@ -1,18 +1,33 @@
 <div>
   <dt>ID:</dt>
   <dd>{{ note.id }}</dd>
-  <div *ngIf="!isUpdateRequestd">
+  <div *ngIf="!isUpdateRequested">
     <dt>Title:</dt>
     <dd>{{ note.title }}</dd>
-    <button class="btn btn-sm btn-info" (click)="isUpdateRequestd = true">
+    <button
+      class="text-uppercase btn btn-sm btn-info"
+      (click)="isUpdateRequested = true"
+    >
       update
     </button>
+    <button
+      (click)="deleteNote()"
+      class="ms-2 text-uppercase btn btn-sm btn-danger"
+    >
+      delete
+    </button>
   </div>
-  <div *ngIf="isUpdateRequestd">
+  <div *ngIf="isUpdateRequested">
     <dt>New Title:</dt>
     <input type="text" class="form-control" [formControl]="updatedTitle" />
-    <button class="btn btn-sm btn-info" (click)="updateNote()">update</button>
+    <button class="text-uppercase btn btn-sm btn-info" (click)="updateNote()">
+      update
+    </button>
+    <button
+      (click)="deleteNote()"
+      class="ms-2 text-uppercase btn btn-sm btn-danger"
+    >
+      delete
+    </button>
   </div>
-  <!-- {{ note | json }} -->
-  <button (click)="deleteNote()" class="btn btn-sm btn-danger">delete</button>
 </div>

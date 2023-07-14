@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { NoteServiceService } from './services/note-service.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { httpInterceptorProviders } from './http-interceptors';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     SignupComponent,
     PageNotFoundComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule],
-  providers: [UserService, NoteServiceService],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers: [UserService, NoteServiceService, httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

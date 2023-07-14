@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Note } from 'src/app/models/note.model';
 import { NoteServiceService } from 'src/app/services/note-service.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { NoteServiceService } from 'src/app/services/note-service.service';
   styleUrls: ['./note-list.component.css'],
 })
 export class NoteListComponent implements OnInit {
-  noteList: Object[] = [];
+  noteList: Note[] = [];
   constructor(
     private noteService: NoteServiceService,
     private router: Router
@@ -16,7 +17,7 @@ export class NoteListComponent implements OnInit {
 
   ngOnInit() {
     this.noteService.getNotes().subscribe((noteList) => {
-      this.noteList = noteList;
+      this.noteList = <Note[]>noteList;
     });
   }
 
@@ -29,7 +30,7 @@ export class NoteListComponent implements OnInit {
       note.id === updatedNote.id ? updatedNote : note
     );
   }
-  
+
   deleteNote(id: any) {
     this.noteList = this.noteList.filter((note: any) => note.id !== id);
   }

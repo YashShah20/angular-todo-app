@@ -1,10 +1,10 @@
-<div class="container mt-5">
+<div class="mt-5">
   <div *ngIf="isError" class="my-2 p-2 bg-danger text-light border rounded-2">
     Something went wrong!!
   </div>
   <form class="form" [formGroup]="noteForm" (ngSubmit)="addNote()">
     <div class="mb-3">
-      <h2 class="text-center">Add New Note</h2>
+      <h2 class="text-start">Add New Note</h2>
     </div>
     <div class="mb-3">
       <label class="mb-2">Title</label>

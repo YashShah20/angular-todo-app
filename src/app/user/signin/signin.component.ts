@@ -23,15 +23,15 @@ export class SigninComponent {
   ) {}
 
   signinForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['yash@gmail.com', [Validators.required, Validators.email]],
+    password: ['abc', [Validators.required, Validators.minLength(3)]],
   });
 
   isError: boolean = false;
 
   private errorHandler = (error: HttpErrorResponse) => {
     this.isError = true;
-
+    console.log(error.error);
     return throwError(
       () => new Error('Something bad happened; please try again later.')
     );
@@ -45,7 +45,6 @@ export class SigninComponent {
       })
       .pipe(catchError(this.errorHandler))
       .subscribe((res: any) => {
-        console.log(res.status);
         localStorage.setItem('token', res?.token);
         this.router.navigate(['/notes']);
       });

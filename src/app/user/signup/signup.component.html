@@ -1,5 +1,5 @@
 <div class="container">
-  <form (ngSubmit)="signup()" [formGroup]="userForm" class="form mt-5">
+  <form (ngSubmit)="signup()" [formGroup]="signupForm" class="form mt-5">
     <div class="text-center">
       <h2>Sign up</h2>
     </div>
@@ -7,39 +7,87 @@
       {{ errorMessage }}
     </div>
     <div class="mb-3">
-      <label class="mb-2">Name</label>
+      <label
+        class="mb-2"
+        [ngClass]="{
+          'text-danger font-bold':
+            signupForm.get('name')?.touched && !signupForm.get('name')?.valid
+        }"
+        >Name</label
+      >
       <input
         type="text"
         name="name"
         formControlName="name"
         class="form-control"
+        [ngClass]="{
+          'border border-2 border-danger':
+            signupForm.get('name')?.touched && !signupForm.get('name')?.valid
+        }"
       />
     </div>
     <div class="mb-3">
-      <label class="mb-2">Email</label>
+      <label
+        class="mb-2"
+        [ngClass]="{
+          'text-danger font-bold':
+            signupForm.get('email')?.touched && !signupForm.get('email')?.valid
+        }"touched
+        >Email</label
+      >
       <input
         type="email"
         name="email"
         formControlName="email"
         class="form-control"
+        [ngClass]="{
+          'border border-2 border-danger':
+            signupForm.get('email')?.touched && !signupForm.get('email')?.valid
+        }"
       />
     </div>
     <div class="mb-3">
-      <label class="mb-2">Password</label>
+      <label
+        class="mb-2"
+        [ngClass]="{
+          'text-danger font-bold':
+            signupForm.get('password')?.touched &&
+            !signupForm.get('password')?.valid
+        }"
+        >Password</label
+      >
       <input
         type="password"
         name="password"
         formControlName="password"
         class="form-control"
+        [ngClass]="{
+          'border border-2 border-danger':
+            signupForm.get('password')?.touched &&
+            !signupForm.get('password')?.valid
+        }"
       />
     </div>
     <div class="mb-3">
-      <label class="mb-2">Confirm Password</label>
+      <label
+        class="mb-2"
+        [ngClass]="{
+          'text-danger font-bold':
+            signupForm.get('confirmPassword')?.touched &&
+            !signupForm.get('confirmPassword')?.valid
+        }"
+        >Confirm Password</label
+      >
       <input
         type="password"
         name="confirm-password"
         formControlName="confirmPassword"
         class="form-control"
+        [ngClass]="{
+          'border border-2 border-danger':
+            signupForm.get('confirmPassword')?.touched &&
+            !signupForm.get('confirmPassword')?.valid
+        }"
       />
     </div>
     <div class="mb-3">
